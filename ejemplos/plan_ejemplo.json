@@ -1,0 +1,9 @@
+{
+ "resumen": "Tarjeta con el nombre al inicio, dos pantallas completas con las palabras clave y una tarjeta intermedia.",
+ "elementos": [
+  {"tipo":"tarjeta","inicio":0.45,"fin":4.55,"titulo":"Erika Torres Vélez","titulo_en":0.6,"subtitulo":"La casa en tres palabras","subtitulo_en":1.5,"icono":"user","posicion":"abajo","motivo":"Presentación"},
+  {"tipo":"pantalla","inicio":4.78,"fin":10.0,"diseno":"numero","numero":"1","icono":"mountain","titulo":"","titulo_en":5.2,"items":[{"texto":"Belleza","en":5.35,"icono":"mountain"},{"texto":"Paisajes","en":6.1,"icono":"mountain"}],"motivo":"Primera palabra"},
+  {"tipo":"tarjeta","inicio":10.45,"fin":12.6,"titulo":"Turismo","titulo_en":10.75,"subtitulo":"","subtitulo_en":10.75,"icono":"plane","posicion":"abajo","motivo":"Segunda palabra"},
+  {"tipo":"pantalla","inicio":12.85,"fin":16.53,"diseno":"lista","numero":"","icono":"ball","titulo":"Y la tercera","titulo_en":13.2,"items":[{"texto":"Un partido","en":15.3,"icono":"ball"}],"motivo":"Tercera palabra"}
+ ]
+}

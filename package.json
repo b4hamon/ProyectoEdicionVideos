@@ -1,0 +1,9 @@
+{
+  "name": "editor-animaciones-claude",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Motor de render de las animaciones (Playwright + Chromium)",
+  "dependencies": {
+    "playwright": "1.56.0"
+  }
+}

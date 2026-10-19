@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Editor de animaciones</title>
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<header class="top">
+  <div class="marca"><span class="punto"></span>Editor de animaciones <small>con Claude</small></div>
+  <div class="pasos" id="pasos">
+    <span data-p="1" class="on">1 Llave</span><span data-p="2">2 Video</span><span data-p="3">3 Plan</span><span data-p="4">4 Exportar</span>
+  </div>
+</header>
+
+<main>
+  <!-- 1. Llave -->
+  <section class="tarjeta" id="s1">
+    <h2>1 · Tu llave de la API de Claude</h2>
+    <p class="ayuda">Créala en <a href="https://platform.claude.com/settings/keys" target="_blank" rel="noopener">platform.claude.com → API keys</a>. Empieza por <code>sk-ant-</code>. La API se paga con créditos prepagados, aparte de tu plan de claude.ai; cada plan cuesta unos pocos centavos de dólar. La llave solo se usa desde este computador y no se guarda en el servidor.</p>
+    <div class="fila">
+      <input id="llave" type="password" placeholder="sk-ant-..." autocomplete="off" spellcheck="false">
+      <select id="modelo"></select>
+      <button id="btnLlave" class="prim">Verificar</button>
+    </div>
+    <label class="check"><input type="checkbox" id="recordar"> Recordar la llave en este navegador</label>
+    <p class="msg" id="msgLlave"></p>
+  </section>
+
+  <!-- 2. Video -->
+  <section class="tarjeta bloqueada" id="s2">
+    <h2>2 · Video, transcripción y paleta</h2>
+    <p class="ayuda">Video de máximo 30 segundos y su transcripción con tiempos (.srt o .vtt; la puedes exportar desde Premiere o CapCut).</p>
+    <div class="grid2">
+      <label class="arch">Video<input id="fVideo" type="file" accept="video/*,.mp4,.mov,.m4v,.webm,.mkv"><span id="nVideo">Elegir archivo…</span></label>
+      <label class="arch">Transcripción (SRT)<input id="fSrt" type="file" accept=".srt,.vtt,.txt"><span id="nSrt">Elegir archivo…</span></label>
+      <label>Nombre de la persona <small>(opcional, para escribirlo bien)</small><input id="persona" placeholder="Ej. Erika Torres Vélez"></label>
+      <label>Rol o tema <small>(opcional)</small><input id="rol" placeholder="Ej. Administración de Sistemas Informáticos"></label>
+    </div>
+    <div class="paleta">
+      <div>
+        <span class="et">Color</span>
+        <div class="muestras" id="muestras"></div>
+      </div>
+      <div><span class="et">Otro</span><input type="color" id="color" value="#7C3AED"></div>
+      <div><span class="et">Fondo</span>
+        <div class="seg" id="modo"><button data-m="claro" class="on">Claro</button><button data-m="oscuro">Oscuro</button></div>
+      </div>
+    </div>
+    <div class="fila"><button id="btnSubir" class="prim">Subir y continuar</button></div>
+    <p class="msg" id="msgSubir"></p>
+  </section>
+
+  <!-- 3. Plan -->
+  <section class="tarjeta bloqueada" id="s3">
+    <h2>3 · Plan de edición</h2>
+    <div class="fila"><button id="btnPlan" class="prim">Pedir el plan a Claude</button><span class="msg" id="msgPlan"></span></div>
+    <div id="zonaPlan" hidden>
+      <div class="plan-grid">
+        <div class="vista">
+          <div class="marco" id="marco">
+            <video id="vid" controls playsinline></video>
+            <iframe id="capa" title="Vista previa de las animaciones"></iframe>
+          </div>
+          <p class="ayuda">Vista previa en vivo de las animaciones sobre tu video. El video final se exporta con más calidad (desenfoque de movimiento).</p>
+        </div>
+        <div class="detalle">
+          <p class="resumen" id="resumen"></p>
+          <div class="linea" id="linea"></div>
+          <div id="elementos"></div>
+          <ul class="avisos" id="avisos"></ul>
+          <details class="cambios">
+            <summary>Pedir cambios a Claude</summary>
+            <textarea id="txtCambios" rows="3" placeholder="Ej. la tarjeta del nombre más larga; quita la segunda pantalla; usa 'Fútbol' en vez de 'Un partido'"></textarea>
+            <button id="btnCambios">Rehacer el plan con estos cambios</button>
+          </details>
+          <details class="cambios">
+            <summary>Editar el plan a mano (JSON)</summary>
+            <textarea id="txtJson" rows="12" spellcheck="false"></textarea>
+            <button id="btnJson">Aplicar JSON</button>
+          </details>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. Exportar -->
+  <section class="tarjeta bloqueada" id="s4">
+    <h2>4 · Video final</h2>
+    <div class="fila"><button id="btnRender" class="prim">Aprobar plan y exportar</button><span class="msg" id="msgRender"></span></div>
+    <div class="barra" id="barra" hidden><div id="barraIn"></div></div>
+    <div id="zonaFinal" hidden>
+      <video id="vidFinal" controls playsinline></video>
+      <a id="descargar" class="prim boton" download>Descargar</a>
+    </div>
+  </section>
+</main>
+<script src="/static/app.js"></script>
+</body>
+</html>
