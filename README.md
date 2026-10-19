@@ -1,4 +1,4 @@
-# Editor de animaciones con Claude
+# Editor de animaciones con Claude en su versión Free
 
 Programa local para editar videos cortos de una persona hablando a cámara (máximo 30 s). Le subes el video y su transcripción con tiempos (SRT). Claude, a través de su API, propone un **plan de edición**. Tú lo revisas con una vista previa en vivo, lo corriges si hace falta y, al aprobarlo, el programa exporta el **video editado** con las animaciones encima y el audio original.
 
